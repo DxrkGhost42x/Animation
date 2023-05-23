@@ -1,0 +1,38 @@
+import simplegui
+import random
+
+# Create Global Variable
+x = 0
+
+def draw_handler(canvas):
+    global x
+   #code for my house 
+    canvas.draw_polygon([(400,200), (600,200), (600,420), (400,420)], 1, "Black", "Grey")
+    canvas.draw_polygon([(0,400), (600,400), (600,600), (0,600)], 1, "Black", "Green")
+    canvas.draw_polygon([(400,200), (500,0), (600,200)], 1, "Black", "Brown")
+    
+    if x < 100:
+       #code for my landmine 
+       canvas.draw_polygon([(210,390), (300,390), (300,400), (210,400)], 1, "Black", "Grey")
+       canvas.draw_polygon([(210,390), (300,390), (300,380), (210,380)], 1, "Black", "Red")
+       #code for my stickman
+       canvas.draw_circle([100 + x,300], 10, 9, "Black", "Black")
+       canvas.draw_line((100 + x,300), (100 + x,360), 6, "Black")
+       canvas.draw_line((100 + x,300), (80 + x,350), 6, "Black")
+       canvas.draw_line((100 + x,300), (120 + x,350), 6, "Black")
+       canvas.draw_line((100 + x,360), (80 + x,400), 6, "Black")
+       canvas.draw_line((100 + x,360), (120 + x,400), 6, "Black")
+       x = x + 3
+    elif x < (200):
+        for i in range(10):
+            xgreyclouds = random.randint(100,300)
+            ygreyclouds = random.randint(200,400)
+            canvas.draw_circle((xgreyclouds,ygreyclouds), 40, 1, "Black", "Grey")
+        x = x + 3    
+    
+    
+
+frame = simplegui.create_frame('Testing', 600, 600)
+frame.set_canvas_background("White")
+frame.set_draw_handler(draw_handler)
+frame.start()
